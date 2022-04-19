@@ -1,0 +1,38 @@
+h1 {
+    size: 24px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    color: var(--grey-500);
+    margin: 0;
+}
+
+h2 {
+    size: 12px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    color: var(--grey-300);
+    width: 650px;
+    margin: 0;
+    text-align: center;
+}
+
+button {
+    size: 14px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    color: var(--grey-300);
+    border: 1px solid;
+    border-color: var(--grey-300);
+    width: 233px;
+    height: 45px;
+    border-radius: 8px;
+    margin-top: 8px;
+    cursor: pointer;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/procurar.css">
+    <link rel="stylesheet" href="../css/index.css">
+</head>
+
+<body>
+    <div class="container_busca">
+        <div onclick="buscar()" class="input">
+            <input type="text" placeholder="Procurar por pokémons" id="name" />
+            <i class="material-icons" id="favoritar">search</i>
+        </div>
+        <div class="main_procurar">
+            <div class="img_bg"><img src="../bg.png" alt="bg"></div>
+
+            <div class="card_pokemon " style="opacity: 0;">
+                <i class="material-icons icon" onclick="favoritar()">favorite_border</i>
+                <div class="image" id="image">
+
+                </div>
+
+                <div class="dados">
+                    <h2 class="name_pokemon" id="name_pokemon"></h2>
+                    <h3 class="id_pokemon" id="id_pokemon">ID:</h3>
+                    <div class="buttonTypes">
+                        <button class="type"></button>
+                        <button class="type"></button>
+                    </div>
+                    <button id="detalhes">ver detalhes</button>
+                </div>
+            </div>
+
+        </div>
+
+        <script src="../js/script.js"></script>
+
+</body>
+
+</html>
