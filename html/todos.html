@@ -13,16 +13,18 @@
 <body>
     <div class="todos">
         <div class="buttons">
-            <button class="buttonOption" id="btnAll" onclick="listarAll()">Todos</button>
-            <button class="buttonOption" id="btnFire" onclick="listarFire()">Fire</button>
-            <button class="buttonOption" id="btnWater" onclick="listarWater()">Witer</button>
-            <button class="buttonOption" id="btnEletric" onclick="listarEletric()">Eletric</button>
+            <button class="buttonOption" id="all" onclick="listarAll()">Todos</button>
+            <button class="buttonOption" id="fire" onclick="listarPorCategoria('fire')">Fire</button>
+            <button class="buttonOption" id="water" onclick="listarPorCategoria('water')">Witer</button>
+            <button class="buttonOption" id="electric" onclick="listarPorCategoria('electric')">Eletric</button>
         </div>
         <div class="list">
 
         </div>
     </div>
+    
     <script src="../js/script.js"></script>
+   
 </body>
 
 </html>

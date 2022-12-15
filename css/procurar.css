@@ -1,6 +1,6 @@
 .card_pokemon {
     width: 200px;
-    min-height: 265px;
+   
     background: #FFFFFF;
     box-shadow: 0px 2px 16px rgba(0, 0, 0, 0.05);
     border-radius: 8px;
@@ -10,12 +10,38 @@
     position: relative;
     padding: 0;
     margin: 8px;
+  
+    min-height: 280px
 }
+
+
+
+.id_pokemon{
+    color: #8E8787;
+    margin-top: 0px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.dados h2{
+    margin-bottom: 0px !important;
+}
+
+
+
+
+
+
+
 
 .icon {
     position: absolute;
-    top: 0;
-    right: 0;
+    width: 28px;
+    height: 28px;
+    color: #6C6868;
+    top: 10px;
+    right: 8px;
+    cursor: pointer;
 }
 
 
@@ -24,9 +50,14 @@
     max-height: 60px;
 } */
 
-.image img {
+
+.image{
     width: 90px;
     height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 25px;
 }
 
 .img_bg {
@@ -36,15 +67,19 @@
 }
 
 .dados {
-    padding: 0px 8px;
+ 
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: start;
+    padding: 0px;
+    margin: 0px;
+    align-self: start;
+    width: 100%;
 }
 
-.dados h2,
-h3 {
+.dados h2,h3 {
     margin: 8px;
+    margin-bottom: 0px;
 }
 
 .dados h2 {
@@ -96,7 +131,7 @@ h3 {
 }
 
 #detalhes {
-    width: 147px;
+    width: 180px;
     height: 40px;
     background: var(--primary);
     border-radius: 8px;
@@ -107,6 +142,9 @@ h3 {
     font-weight: 500;
     size: 15px;
     cursor: pointer;
+        align-self: center;
+        margin-top: 16px;
+    
 }
 
 .electric {
@@ -191,19 +229,24 @@ h3 {
 
 .type {
     border: none;
-    border-radius: 8px;
-    padding: 8px 16px;
-    width: 75px;
-    height: 40px;
-    margin-left: 4px;
     color: var(--grey-500);
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
-    font-size: 15px;
+    height: 25px;
+    font-size: 12px;
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    padding: 6px 12px;
 }
 
 .buttonTypes {
     flex: 1;
     display: flex;
     align-items: space-between;
+    gap: .25rem;
+    align-self: start;
+    margin-left: 8px;
 }

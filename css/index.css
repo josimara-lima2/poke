@@ -42,11 +42,32 @@ body {
     display: flex;
     width: 300px;
     justify-content: space-between;
+    gap: 8px;
+    align-items: flex-start;
+    margin-top: .75rem;
 }
 
 .menuItem {
     cursor: pointer;
 }
+
+.menuItem:after{
+    content: '';
+    display: block;
+    width: 100px;
+    height: 2px;
+    background: transparent;
+    margin-top: 15px;
+  }
+  
+  .menuItem.active:after{
+    content: '';
+    display: block;
+    width: 100px;
+    height: 2px;
+    background: #1E1E1F;
+    margin-top: 15px;
+  }
 
 .main {
     display: flex;
