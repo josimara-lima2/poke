@@ -1,3 +1,4 @@
+
 const openPage = (a) => {
     let main = document.querySelector('.main')
     let page = new XMLHttpRequest()
@@ -8,6 +9,10 @@ const openPage = (a) => {
         }
         if(a == 'todos'){
              listarAll()
+        }
+        if(a == 'favorites'){
+            console.log('passou aquiiiiiiiiiiiiiiiii')
+            openFavorites()
         }
     }
   
@@ -89,7 +94,7 @@ const listarAll = () => {
                         .then(function(result) {
 
                             list.innerHTML += ` <div class="card_pokemon">
-                            <i class="material-icons icon" onclick="favoritar()">favorite_border</i>
+                            <i class="material-icons icon" onclick="favoritar(this)">favorite_border</i>
                             <div class="image" id="image">
             <img src="${result.sprites.front_default}"/>
                             </div>
@@ -124,46 +129,96 @@ const listarAll = () => {
 }
 
 
-const favoritar = () => {
-    let favoritesList = new Array()
-    const favorites = localStorage.getItem('favorites')
-    if (favorites) {
-        favoritesList = JSON.parse(favorites)
+function geraCard(result){
+    return ` <div class="card_pokemon">
+    <i class="material-icons icon" onclick="favoritar(this)">favorite_border</i>
+    <div class="image" id="image">
+<img src="${result.sprites.front_default}"/>
+    </div>
 
-    } else {
+    <div class="dados">
+        <h2 class="name_pokemon" id="name_pokemon">${result.name}</h2>
+        <h3 class="id_pokemon" id="id_pokemon">ID: ${result.id}</h3>
+        <div class="buttonTypes">
+            <button class="type ${result.types[0].type.name || ''}">${result.types[0].type.name}</button>
+            <button class="type  ${result.types[1].type.name || ''}">  ${result.types[1].type.name || ''}</button>
+        </div>
+        <button id="detalhes">ver detalhes</button>
+    </div>
+</div> `
+}
 
-        favoritesList.push({
-
-            name: document.getElementById('name_pokemon').innerText,
-            id: document.getElementById('id_pokemon').innerText
-        })
-
-        localStorage.setItem("favorites", JSON.stringify(favoritesList))
-    }
+function buscarNome(nome){
+    fetch(`https://pokeapi.co/api/v2/pokemon/${nome}`)
+    .then((resp) => resp.json())
+    .then(function(data) {
+        console.log(data)
+        document.getElementById('conteudo').innerHTML += geraCard(data)
+    })
 }
 
 
-const openFavorites = () => {
-    openPage('favorites')
-        // let favoritesList = new Array()
-        // const favorites = localStorage.getItem('favorites')
-        // if (favorites) {
-        //     favoritesList = JSON.parse(favorites)
+const favoritar = (icone) => {
+    let favoritesList = new Array()
+    const favorites = localStorage.getItem('favorites')
+    const card = icone.closest('.card_pokemon')
+    const newFavorite = {
+        name: card.querySelector('#name_pokemon').innerText,
+        id: card.querySelector('#id_pokemon').innerText
+    }
+    let isExist = false
+    console.log(favorites)
+    if (favorites) {
+        favoritesList = JSON.parse(favorites)
 
-    //     document.getElementById('conteudo').innerHTML = favoritesList[0].name
+    }
+    favoritesList.map(item => {
+        console.log(item ,newFavorite,newFavorite == item )
+        if(newFavorite.id == item.id){
+            isExist = true
+        }
+    })
+    if(!isExist){
+        favoritesList.push({
+            name: card.querySelector('#name_pokemon').innerText,
+            id: card.querySelector('#id_pokemon').innerText
+        })
+        icone.style.color = 'red'
+    }else{
+       favoritesList = favoritesList.filter(item => item.id !== newFavorite.id)
+    }
+    
+
+   
 
 
-    // } else {
-    //     document.getElementById('conteudo').innerHTML = `<img src="../images/astronaut.png" alt="astronaut">
-    //     <div class="content">
-    //         <h1>Está meio vazio por aqui!</h1>
-    //         <h2>Procure por pokémons para adicioná-los aos seus favoritos.</h2>
-    //         <button id="buttonProcurar" onclick="clickProcurar()">Procurar pokémons</button>
-    //     </div> `
-    //     openPage('favorites')
-    // }
 
+    localStorage.setItem("favorites", JSON.stringify(favoritesList))
+}
 
+ const openFavorites = async() => {
+    document.getElementById('conteudo').innerHTML = ''
+         let favoritesList = new Array()
+         const favorites = localStorage.getItem('favorites')
+         if (favorites) {
+             favoritesList = JSON.parse(favorites)
+        console.log(favoritesList)
+             favoritesList.forEach(item => {
+               console.log(item)
+                 buscarNome(item.name)
+             })
+         
+     } else {
+         document.getElementById('conteudo').innerHTML = `<img src="../images/astronaut.png" alt="astronaut">
+         <div class="content">
+             <h1>Está meio vazio por aqui!</h1>
+             <h2>Procure por pokémons para adicioná-los aos seus favoritos.</h2>
+             <button id="buttonProcurar" onclick="clickProcurar()">Procurar pokémons</button>
+         </div> `
+       
+     }
+
+    
 }
 
 
@@ -186,7 +241,7 @@ listarPorCategoria = (categoria) => {
                         .then(function(result) {
 
                             list.innerHTML += ` <div class="card_pokemon">
-                            <i class="material-icons icon" onclick="favoritar()">favorite_border</i>
+                            <i class="material-icons icon" onclick="favoritar(this)">favorite_border</i>
                             <div class="image" id="image">
             <img src="${result.sprites.front_default}"/>
                             </div>
@@ -225,3 +280,5 @@ eventBtn = (btn) => {
 
 }
 
+
+openPage('favorites')
